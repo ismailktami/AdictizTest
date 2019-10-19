@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'adz-home',
@@ -8,9 +9,12 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   private word =  '';
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
+
   }
   search() {
   this.router.navigate(['/search-books', this.word]);

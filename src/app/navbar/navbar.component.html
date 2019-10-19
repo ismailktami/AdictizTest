@@ -1,8 +1,10 @@
 
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="navbar" style="height:10%">
   <div>Test Adictiz</div>
   <div>
     <span [routerLink]="''" style="cursor: pointer;">Home</span>
     <span [routerLink]="'/about'" style="cursor: pointer;">About</span>
+    <span (click)="changeLanguage" style="cursor: pointer;">Languages</span>
+
   </div>
 </mat-toolbar>
