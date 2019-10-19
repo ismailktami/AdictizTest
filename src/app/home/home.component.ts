@@ -1,0 +1,19 @@
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+
+@Component({
+  selector: 'adz-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+  private word =  '';
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+  }
+  search() {
+  this.router.navigate(['/search-books', this.word]);
+
+  }
+}
