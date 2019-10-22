@@ -12,6 +12,10 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {DetailsBooksComponent} from './details-books/details-books.component';
+import {reducers} from './adz-store/adz-reducers/adz-index';
+import {StoreModule} from '@ngrx/store';
+
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -36,7 +40,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    StoreModule.forFeature('books', reducers),
+    StoreModule.forRoot(reducers)
   ],
   entryComponents: [
     DetailsBooksComponent

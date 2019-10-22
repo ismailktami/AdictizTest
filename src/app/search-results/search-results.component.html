@@ -4,15 +4,24 @@
     <mat-form-field class="search-form">
       <input matInput placeholder="Search Books" type="text">
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Filter by </mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button button="submit" mat-raised-button color="primary" style="margin-left: 10px">Search</button>
   </div>
   <br>
   <div fxLayout="row wrap" fxLayoutAlign="center center">
     <mat-card class="example-card" *ngFor="let picture of pictures"
               fxFlex="25"
-              fxFlex.md="33"
-              fxFlex.sm="50"
-              fxFlex.xs="100"
+              fxFlex.md="30"
+              fxFlex.sm="30"
+              fxFlex.xs="50"
               fxLayout="column"
               style="margin-right: 10px;"
     >

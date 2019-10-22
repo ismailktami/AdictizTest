@@ -2,14 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DetailsBooksComponent} from '../details-books/details-books.component';
 import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import * as fromStoreReducers from '../adz-store/adz-reducers/adz-book-reducer';
+import * as fromStoreActions from '../adz-store/adz-actions/adz-books-action';
+import * as fromStoreReducersIndex from '../adz-store/adz-reducers/adz-index';
 
 @Component({
   selector: 'adz-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })
+
 export class SearchResultsComponent implements OnInit {
   word: string;
+  foods: any[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
   pictures = [
     {
       id: 1,
@@ -44,9 +55,15 @@ export class SearchResultsComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.word = this.route.snapshot.paramMap.get('word');
+    this.store.select<any>('books').subscribe(data=>{
+      console.log(data);
+    });
 
+    this.store.select<any>(fromStoreReducersIndex.getAllBooks).subscribe(data=>{
+      console.log(data);
+    });
   }
-  constructor(public dialog: MatDialog, private route: ActivatedRoute ) {}
+  constructor(public dialog: MatDialog, private route: ActivatedRoute , private store: Store<fromStoreReducers.BooksState>){}
 
   showDetails(book) {
     this.dialog.open(DetailsBooksComponent, {data: {book}});
