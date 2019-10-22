@@ -7,7 +7,7 @@ import {Store} from '@ngrx/store';
 import * as fromStoreReducers from '../adz-store/adz-reducers/adz-book-reducer';
 import * as fromStoreActions from '../adz-store/adz-actions/adz-books-action';
 import * as fromStoreReducersIndex from '../adz-store/adz-reducers/adz-index';
-
+import * as fromEffects from '../adz-store/adz-effects/adz-books-effects';
 @Component({
   selector: 'adz-search-results',
   templateUrl: './search-results.component.html',
@@ -16,6 +16,7 @@ import * as fromStoreReducersIndex from '../adz-store/adz-reducers/adz-index';
 
 export class SearchResultsComponent implements OnInit {
   word: string;
+  books: [];
   foods: any[] = [
     {value: 'steak-0', viewValue: 'Steak'},
     {value: 'pizza-1', viewValue: 'Pizza'},
@@ -55,15 +56,15 @@ export class SearchResultsComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.word = this.route.snapshot.paramMap.get('word');
-    this.store.select<any>('books').subscribe(data=>{
+    this.store.dispatch(new fromStoreActions.LoadBooks(this.word));
+    this.store.select<any>(fromStoreReducersIndex.getAllBooks).subscribe(data => {
       console.log(data);
-    });
-
-    this.store.select<any>(fromStoreReducersIndex.getAllBooks).subscribe(data=>{
-      console.log(data);
+      this.books = data;
     });
   }
-  constructor(public dialog: MatDialog, private route: ActivatedRoute , private store: Store<fromStoreReducers.BooksState>){}
+
+
+  constructor(public dialog: MatDialog, private route: ActivatedRoute , private store: Store<fromStoreReducers.BooksState>) {}
 
   showDetails(book) {
     this.dialog.open(DetailsBooksComponent, {data: {book}});

@@ -8,11 +8,7 @@ export interface BooksState {
 }
 
 export  const initialState: BooksState = {
-  data: [{
-    id : 1,
-name: 'ismail' ,
-tittle : 'rddd'
-  }],
+  data: [],
   loaded: false,
   loading: false,
   error : ' '
@@ -38,9 +34,13 @@ export function reducer(
       };
     }
     case fromBooks.LOAD_BOOKS_SUCCESS :  {
+      const d = action.payload;
+
       return {
         ...state,
-        loaded: true
+        loaded: true,
+        data: d
+
       };
     }
   }

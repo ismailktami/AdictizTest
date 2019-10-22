@@ -14,7 +14,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {DetailsBooksComponent} from './details-books/details-books.component';
 import {reducers} from './adz-store/adz-reducers/adz-index';
 import {StoreModule} from '@ngrx/store';
-
+import {effects} from './adz-store/adz-effects/adz-effects-index';
+import {EffectsModule} from '@ngrx/effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,7 +43,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     StoreModule.forFeature('books', reducers),
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    EffectsModule.forFeature(effects),
+    EffectsModule.forRoot(effects)
+
   ],
   entryComponents: [
     DetailsBooksComponent
