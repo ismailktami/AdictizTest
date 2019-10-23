@@ -8,10 +8,9 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 constructor(public translate: TranslateService) {
   translate.addLangs(['en', 'fr']);
-
 }
 ngOnInit(): void {
   if (localStorage.getItem('language')) {

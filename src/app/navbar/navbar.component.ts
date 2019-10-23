@@ -7,7 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public translate: TranslateService) {}
+  constructor(private translate: TranslateService) {}
   ngOnInit() {
   }
   changeLanguage(lang) {
