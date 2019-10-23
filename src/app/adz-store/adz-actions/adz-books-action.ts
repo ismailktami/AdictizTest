@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import {Book} from '../../adz-models/adz-book.module';
 
 export const LOAD_BOOKS = '[Books] Load books';
 export const LOAD_BOOKS_FAIL = '[Books] Load books Failed';
@@ -8,7 +7,7 @@ export const LOAD_BOOKS_SUCCESS = '[Books] Load books Success';
 
 export  class LoadBooks implements  Action {
   readonly type = LOAD_BOOKS;
-  constructor(public payload: string ) {}
+    constructor(public payload: string ) {}
 
 }
 export  class LoadBooksFail implements  Action {
@@ -19,7 +18,7 @@ export  class LoadBooksFail implements  Action {
 }
 export  class LoadBooksSuccess implements  Action {
   readonly type = LOAD_BOOKS_SUCCESS;
-  constructor(public payload: Book[] ) {}
+  constructor(public payload: any[] ) {}
 }
 
 

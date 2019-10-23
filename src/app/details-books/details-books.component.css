@@ -1,0 +1,19 @@
+.card-picture {
+  width: 23%;
+  margin-bottom: 2%;
+}
+.mat-card-header{
+  text-align: center;
+}
+.mat-card.scrollable-content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+}.mat-card-title-group {
+  display: block;
+}
+
+ .mat-card-content {
+  overflow-y: auto;
+}

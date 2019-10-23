@@ -1,6 +1,22 @@
 {
-  "HOME": {
-    "TITLE": "Hello Angular with ngx-translate!",
-    "SELECT": "Changer la langue"
-  }
+  "NAVBAR": {
+    "HOME": "Acceuil",
+    "ABOUT": "A propos",
+    "TESTADICTIZ": "Le test Adictiz"
+  },
+  "HOME" : {
+    "SEARCH": "Chercher",
+    "SEARCHPLACEHOLDER": "chercher un livre"
+  },
+  "SEARCHRESULT" : {
+    "SEARCHBOOKBYPLACEHOLDER": "Chercher un livre par ",
+    "FILTERBY": "Filtrer Par"
+  },
+  "DETAILS": {
+  "PAGECOUNT": "Nombre de pages",
+  "DATEPUB": "Date de publication",
+  "LANGUAGE": "Language",
+  "AUTHORS": "Auteurs"
+}
+}
 }

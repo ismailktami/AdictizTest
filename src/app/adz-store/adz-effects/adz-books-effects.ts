@@ -5,7 +5,6 @@ import {Observable , of } from 'rxjs';
 import {map, mergeMap, catchError, filter, debounceTime} from 'rxjs/operators';
 import * as booksActions from '../adz-actions/adz-books-action';
 import {AdzServicegoogleService} from '../../adz-servicegoogle.service';
-import {Book} from '../../adz-models/adz-book.module';
 
 // @ts-ignore
 @Injectable()
@@ -25,9 +24,11 @@ export class BooksEffect {
     mergeMap((action: booksActions.LoadBooks) =>
       this.booksService.getBooksbyword(action.payload).pipe(
         map(
-          (data: Book[]) => new booksActions.LoadBooksSuccess(data.items)),
+          (data: any[]) => new booksActions.LoadBooksSuccess((data as any).items),
         catchError(err => of(new booksActions.LoadBooksFail(err)))
       )
     )
-  );
+  )
+);
+
 }

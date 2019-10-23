@@ -1,8 +1,23 @@
-
 {
-  "HOME": {
-    "TITLE": "Hello Angular with ngx-translate!",
-    "SELECT": "Change language"
+  "NAVBAR": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "TESTADICTIZ": "Adictiz Test"
+  },
+  "HOME" : {
+    "SEARCH": "Search",
+    "SEARCHPLACEHOLDER": "Search a book"
+
+  },
+  "SEARCHRESULT" : {
+    "SEARCHBOOKBYPLACEHOLDER": "Search  Book by",
+    "FILTERBY": "Filter By"
+
+  },
+  "DETAILS": {
+    "PAGECOUNT": "Number of pages",
+    "DATEPUB": "Date of publication",
+    "LANGUAGE": "Language",
+    "AUTHORS": "AUTHORS"
   }
 }
-

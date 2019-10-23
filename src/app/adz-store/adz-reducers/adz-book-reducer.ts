@@ -1,7 +1,6 @@
-import {Book} from '../../adz-models/adz-book.module';
 import * as fromBooks from '../adz-actions/adz-books-action';
 export interface BooksState {
-  data: Book[];
+  data: any[];
   loaded: boolean;
   loading: boolean;
   error: string;

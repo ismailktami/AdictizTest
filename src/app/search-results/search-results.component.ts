@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DetailsBooksComponent} from '../details-books/details-books.component';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import * as fromStoreReducers from '../adz-store/adz-reducers/adz-book-reducer';
 import * as fromStoreActions from '../adz-store/adz-actions/adz-books-action';
 import * as fromStoreReducersIndex from '../adz-store/adz-reducers/adz-index';
-import * as fromEffects from '../adz-store/adz-effects/adz-books-effects';
+import {fromEvent, Observable} from 'rxjs';
+import {debounceTime, filter, map} from 'rxjs/operators';
 @Component({
   selector: 'adz-search-results',
   templateUrl: './search-results.component.html',
@@ -16,59 +16,93 @@ import * as fromEffects from '../adz-store/adz-effects/adz-books-effects';
 
 export class SearchResultsComponent implements OnInit {
   word: string;
-  books: [];
-  foods: any[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  pictures = [
-    {
-      id: 1,
-      title: 'A natural view',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/8V46UZCS0V.jpg'
-    },
-    {
-      id: 2,
-      title: 'Newspaper',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/LTLE4QGRVQ.jpg'
-    },
-    {
-      id: 3,
-      title: 'Favourite pizza',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/R926LU1YEA.jpg'
-    },
-    {
-      id: 4,
-      title: 'Abstract design',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/U9PP3KXXY2.jpg'
-    },
-    {
-      id: 5,
-      title: 'Tech',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/NO9CN3QYR3.jpg'
-    },
-    {
-      id: 6,
-      title: 'Nightlife',
-      img: 'https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/X1UK6NLGRU.jpg'
-    },
-  ];
+  books: any[];
+  filterBy = 'Title';
+  motcle = ' ';
+  wordSearching: any[] = [
+    {value: 'Authors'},
+    {value: 'Title'},
+    {value: 'Description'}];
+  constructor(public dialog: MatDialog, private route: ActivatedRoute , private store: Store<fromStoreReducers.BooksState> ) {}
   ngOnInit(): void {
     this.word = this.route.snapshot.paramMap.get('word');
     this.store.dispatch(new fromStoreActions.LoadBooks(this.word));
+    this.eventInputSearching();
     this.store.select<any>(fromStoreReducersIndex.getAllBooks).subscribe(data => {
-      console.log(data);
       this.books = data;
     });
   }
 
+     loadData(word) {
+    this.store.select<any>(fromStoreReducersIndex.getAllBooks).subscribe(data => {
+        if (this.filterBy === 'Title') {
+          (data as any[]).filter(obj => {
+            this.filterByTittle(obj, word);
+          });
+        } else if (this.filterBy === 'Description') {
+          (data as any[]).filter(obj => {
+            this.filterByDescription(obj, word);
+          });
+        } else {
+          (data as any[]).filter(obj => {
+            this.filterByAuthors(obj, word);
+          });
+        }
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute , private store: Store<fromStoreReducers.BooksState>) {}
+
+      });
+  }
 
   showDetails(book) {
     this.dialog.open(DetailsBooksComponent, {data: {book}});
     this.dialog.afterAllClosed.subscribe(result => {
     });
   }
+
+   eventInputSearching() {
+    const keyups = fromEvent(document.querySelector('#search'), 'keyup');
+    keyups.pipe(debounceTime(1000)).subscribe((event: any ) => {
+      this.books = [];
+      this.loadData(event.target.value);
+    });
+  }
+  eventSelection() {
+      this.loadData(this.word);
+
+  }
+
+
+
+
+
+  filterByTittle(obj, word) {
+    if ((obj.volumeInfo.title as string).toLocaleLowerCase().trim().includes(word.toLowerCase())) {
+        this.books.push(obj);
+        return true;
+    } else {
+      return false;
+    }  }
+
+  filterByAuthors(obj, word) {
+    if (obj.volumeInfo.authors) {
+      for (const auth of obj.volumeInfo.authors) {
+        if ((auth as string).toLocaleLowerCase().includes(word.toLowerCase())) {
+          this.books.push(obj);
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+  filterByDescription(obj, word) {
+    if (obj.volumeInfo.description) {
+      if ((obj.volumeInfo.description as string).trim().toLowerCase().includes(word.toLowerCase())) {
+        this.books.push(obj);
+        return true;
+      }
+    }
+    return false;
+    }
+
 }
+

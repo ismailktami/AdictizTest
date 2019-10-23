@@ -8,7 +8,8 @@ import {
   MatFormFieldModule,
   MatDialogModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatTabsModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -23,6 +24,7 @@ const MaterialComponents = [
   MatDialogModule,
   MatSelectModule,
   MatOptionModule,
+  MatTabsModule,
 MatCardModule]
 @NgModule({
   imports: [

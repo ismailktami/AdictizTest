@@ -7,11 +7,13 @@ import {MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./details-books.component.css']
 })
 export class DetailsBooksComponent implements OnInit {
-
+  private book: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    console.log(this.data.book);
-  }
+     console.log(this.data.book);
+     this.book = this.data.book.volumeInfo;
+
+          }
 
 }

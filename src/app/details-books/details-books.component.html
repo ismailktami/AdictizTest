@@ -1,2 +1,61 @@
 
-<button mat-button mat-dialog-close="true">Close</button>
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <mat-card class="example-card scrollable-content"
+            fxFlex="100"
+            fxFlex.md="100"
+            fxFlex.sm="100"
+            fxFlex.xs="100"
+            fxLayout="column">
+    <mat-card-header>
+      <mat-card-title fxLayoutAlign="center"  *ngIf="book">{{book.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Description">
+          <div  *ngIf="book.description" fxLayout="row" fxLayoutAlign="center center ">
+            <p>
+              {{book.description}}
+            </p>
+          </div>
+        </mat-tab>
+        <mat-tab label="{{'DETAILS.AUTHORS' | translate}}">
+          <div  *ngIf="book.authors" fxLayout="row" fxLayoutAlign="center center ">
+          <ul>
+            <li *ngFor="let auth of book.authors">
+              {{ auth +'  '}}
+            </li>
+          </ul>
+        </div>
+        </mat-tab>
+        <mat-tab label="{{'DETAILS.LANGUAGE'|translate}}">
+          <div *ngIf="book.language" fxLayout="row" fxLayoutAlign="center center ">
+          <p  >
+            {{'  '+book.language}}
+          </p>
+        </div> </mat-tab>
+
+      <mat-tab label="{{'DETAILS.DATEPUB'|translate}}">
+        <div fxLayout="row" *ngIf="book.publishedDate" fxLayoutAlign="center center">
+          <p>
+            {{ '  '+ book.publishedDate}}
+          </p>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="{{'DETAILS.PAGECOUNT'|translate}}">
+        <div fxLayout="row" *ngIf="book.pageCount" fxLayoutAlign="center  center">
+          <p >
+            {{'  '+book.pageCount}}
+          </p>
+        </div>
+      </mat-tab>
+
+      </mat-tab-group>
+
+
+    </mat-card-content>
+  </mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+<button style="background: firebrick" mat-button mat-dialog-close="true">Close</button>
+</div>

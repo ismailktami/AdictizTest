@@ -1,10 +1,10 @@
 
 <mat-toolbar color="primary" class="navbar" style="height:10%">
-  <div>Test Adictiz</div>
+  <div>{{'NAVBAR.TESTADICTIZ' |translate}}</div>
   <div>
-    <span [routerLink]="''" style="cursor: pointer;">Home</span>
-    <span [routerLink]="'/about'" style="cursor: pointer;">About</span>
-    <span (click)="changeLanguage" style="cursor: pointer;">Languages</span>
-
+    <span [routerLink]="''" style="cursor: pointer;">{{ 'NAVBAR.HOME' | translate }}</span>
+    <span [routerLink]="'/about'" style="cursor: pointer;">{{ 'NAVBAR.ABOUT' | translate }}</span>
+    <span (click)="changeLanguage('fr')" style="cursor: pointer;text-decoration: underline">FR</span>
+    <span (click)="changeLanguage('en')" style="cursor: pointer;text-decoration: underline">EN</span>
   </div>
 </mat-toolbar>
