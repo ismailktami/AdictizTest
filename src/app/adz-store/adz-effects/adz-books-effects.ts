@@ -4,7 +4,7 @@ import {Action} from '@ngrx/store';
 import {Observable , of } from 'rxjs';
 import {map, mergeMap, catchError, filter, debounceTime} from 'rxjs/operators';
 import * as booksActions from '../adz-actions/adz-books-action';
-import {AdzServicegoogleService} from '../../adz-servicegoogle.service';
+import {AdzServicegoogleService} from '../../adz-services/adz-servicegoogle.service';
 
 // @ts-ignore
 @Injectable()

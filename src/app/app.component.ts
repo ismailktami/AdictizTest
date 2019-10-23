@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {DetailsBooksComponent} from './details-books/details-books.component';
+import {DetailsBooksComponent} from './adz-details-books/details-books.component';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({

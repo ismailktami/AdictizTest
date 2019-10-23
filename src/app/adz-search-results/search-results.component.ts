@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {DetailsBooksComponent} from '../details-books/details-books.component';
+import {DetailsBooksComponent} from '../adz-details-books/details-books.component';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import * as fromStoreReducers from '../adz-store/adz-reducers/adz-book-reducer';
@@ -76,7 +76,7 @@ export class SearchResultsComponent implements OnInit {
 
 
   filterByTittle(obj, word) {
-    if ((obj.volumeInfo.title as string).toLocaleLowerCase().trim().includes(word.toLowerCase())) {
+    if ((obj.volumeInfo.title as string).toLowerCase().trim().includes(word.toLowerCase())) {
         this.books.push(obj);
         return true;
     } else {
@@ -86,7 +86,7 @@ export class SearchResultsComponent implements OnInit {
   filterByAuthors(obj, word) {
     if (obj.volumeInfo.authors) {
       for (const auth of obj.volumeInfo.authors) {
-        if ((auth as string).toLocaleLowerCase().includes(word.toLowerCase())) {
+        if ((auth as string).toLowerCase().trim().includes(word.toLowerCase())) {
           this.books.push(obj);
           return true;
         }
