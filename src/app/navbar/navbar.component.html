@@ -3,7 +3,6 @@
   <div>{{'NAVBAR.TESTADICTIZ' |translate}}</div>
   <div>
     <span [routerLink]="''" style="cursor: pointer;">{{ 'NAVBAR.HOME' | translate }}</span>
-    <span [routerLink]="'/about'" style="cursor: pointer;">{{ 'NAVBAR.ABOUT' | translate }}</span>
     <span (click)="changeLanguage('fr')" style="cursor: pointer;text-decoration: underline">FR</span>
     <span (click)="changeLanguage('en')" style="cursor: pointer;text-decoration: underline">EN</span>
   </div>
