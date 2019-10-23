@@ -1,9 +1,9 @@
   <div    style="height:90%;background-image: url('./assets/images/books.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover">
-  <div fxLayout="column wrap" fxLayoutAlign="center center" style="width: 500px;height: 100%">
-    <mat-form-field class="search-form" >
-      <input matInput placeholder="{{'HOME.SEARCHPLACEHOLDER'|translate}}" type="text" [(ngModel)]="word">
-    </mat-form-field>
-    <button  button="submit" mat-raised-button color="primary" style="margin-left: 10px" (click)="search()">{{ 'HOME.SEARCH' | translate }}</button>
-  </div>
+  <div fxLayout="row" fxLayoutAlign="center start" fxLayout="column" style="height: 100%;margin-left:40px; " >
+     <mat-form-field >
+       <input matInput placeholder="{{'HOME.SEARCHPLACEHOLDER'|translate}}" type="text" [(ngModel)]="word">
+     </mat-form-field>
+     <button  button="submit" mat-raised-button color="primary" style="margin-left: 10px;height:40px;" (click)="search()">{{ 'HOME.SEARCH' | translate }}</button>
+   </div>
 
   </div>
