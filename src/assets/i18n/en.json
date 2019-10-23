@@ -11,7 +11,8 @@
   },
   "SEARCHRESULT" : {
     "SEARCHBOOKBYPLACEHOLDER": "Search  Book by",
-    "FILTERBY": "Filter By"
+    "FILTERBY": "Filter By",
+    "SHOWDETAILS": "Show details"
 
   },
   "DETAILS": {

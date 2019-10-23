@@ -10,7 +10,9 @@
   },
   "SEARCHRESULT" : {
     "SEARCHBOOKBYPLACEHOLDER": "Chercher un livre par ",
-    "FILTERBY": "Filtrer Par"
+    "FILTERBY": "Filtrer Par",
+    "SHOWDETAILS": "Afficher détails"
+
   },
   "DETAILS": {
   "PAGECOUNT": "Nombre de pages",
